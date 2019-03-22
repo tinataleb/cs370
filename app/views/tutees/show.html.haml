@@ -23,8 +23,14 @@
         %li
           %a
             %i
-              Request
               -#= link_to 'Request Tutor', new_request_path
+              =form_tag requests_path(:tutee_id =>@tutee.id,:course_id => 1), :method =>:post do
+                = select_tag "dropdown", options_from_collection_for_select(@courses, 'id', "name")
+
+                = label :request, :subject, 'Subject'
+                = text_field :request, 'subject'
+
+                = submit_tag 'Request Tutor'
         %li
           %a
             %i
@@ -39,3 +45,6 @@
       / Scroll to Top Button
       %a.scroll-to-top.rounded{:href => "#page-top"}
         %i.fas.fa-angle-up
+%strong = '#{@tutee.id}'
+
+

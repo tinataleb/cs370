@@ -9,8 +9,10 @@ class TuteesController < ApplicationController
   end
 
   def show
-    id = params[:id]
-    @tutee = Tutee.find(id)
+    @tutee = Tutee.find_by_id(params[:id])
+    @courses = [Course.find_by_semester(Course.current_semester)]
+
+
   end
 
   def new
@@ -43,4 +45,5 @@ class TuteesController < ApplicationController
 
   def destroy
   end
+
 end
