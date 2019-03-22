@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :tutees, :courses, :requests
   root :to => redirect('/tutees')
 
+  get 'requests/history/:tutee_id', to: 'requests#history', as: :request_history_tutee  
 end
