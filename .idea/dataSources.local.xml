@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails cs370: development" uuid="79e6a7b6-70a8-4a6a-9889-0b2203954c69">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
+    </data-source>
+    <data-source name="Rails cs370: production" uuid="aaae2d61-f1ad-4b02-a613-a540aeec378a">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <user-name>cs370</user-name>
+    </data-source>
+    <data-source name="Rails cs370: test" uuid="885fa41b-5e15-4ee8-a2fe-b746c7d41c61">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+    </data-source>
+  </component>
+</project>

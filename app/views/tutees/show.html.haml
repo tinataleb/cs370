@@ -23,18 +23,18 @@
         %li
           %a
             %i
-              -#= link_to 'Request Tutor', new_request_path
-              =form_tag requests_path(:tutee_id =>@tutee.id,:course_id => 1), :method =>:post do
-                = select_tag "dropdown", options_from_collection_for_select(@courses, 'id', "name")
-
-                = label :request, :subject, 'Subject'
-                = text_field :request, 'subject'
-
-                = submit_tag 'Request Tutor'
+              -#-#= link_to 'Request Tutor', new_request_path
+              -#=form_tag requests_path(:tutee_id =>@tutee.id,:course_id => 1), :method =>:post do
+              -#  = select_tag "dropdown", options_from_collection_for_select(@courses, 'id', "name")
+              -#
+              -#  = label :request, :subject, 'Subject'
+              -#  = text_field :request, 'subject'
+              -#
+              -#  = submit_tag 'Request Tutor'
         %li
           %a
             %i
-            = link_to 'History', request_history_tutee_path(@tutee)
+            -#= link_to 'History', request_history_tutee_path(@tutee)
       %div
         %div
           / Sticky Footer
