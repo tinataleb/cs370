@@ -10,7 +10,9 @@ class RequestsController < ApplicationController
   end
 
   def history
-    @requests = Request.where(:tutee_id => params[:tutee_id])
+    @tutee = Tutee.find_by_id(params[:tutee_id])
+    @requests = @tutee.requests
+    @courses = [Course.find_by_semester(Course.current_semester)]
   end
 
 
@@ -26,16 +28,16 @@ class RequestsController < ApplicationController
     @tutee = Tutee.find(params[:tutee_id])
     @request = @tutee.requests.new(request_params)
     @request.course_id = params[:course_id]
-    respond_to do |format|
-      if @request.save!
-        format.html {redirect_to @request, notice: 'Request was successfully created'}
-        format.json {render :show, status: :created, location: @request}
 
-      else
-        format.html {render :index, notice: '#{request_params}'}
-        format.json {render json: @request.errors, status: :unprocessable_entity}
-      end
+    if @request.save!
+      flash[:notice] = 'Request was successfully created'
+
+
+    else
+      flash[:notice] = 'Request was not created #{request_params}'
     end
+    redirect_to tutee_path(@tutee)
+
   end
 
   def update
@@ -56,9 +58,4 @@ class RequestsController < ApplicationController
   def request_params
     params.require(:request).permit(:tutee_id, :course_id, :subject)
   end
-<<<<<<< HEAD
-=======
-
-
->>>>>>> origin/request-history-feature
 end

@@ -1,3 +1,48 @@
+%html
+  %head
+    %title
+      History
+  %body
+    %h1 Home
+
+    %nav
+      %a
+        = @tutee.first_name + " " + @tutee.last_name
+    %div
+
+      / Sidebar
+      %ul
+        %li
+          %a
+            %i
+            %span Dashboard
+        %li
+          %a
+            %i
+              = link_to 'Edit', edit_tutee_path(@tutee)
+        %li
+          %a
+            %i
+              -#= link_to 'Request Tutor', new_request_path
+              =form_tag requests_path(:tutee_id =>@tutee.id,:course_id => 1), :method =>:post do
+                = select_tag "dropdown", options_from_collection_for_select(@courses, 'id', "name")
+
+                = label :request, :subject, 'Subject'
+                = text_field :request, 'subject'
+
+                = submit_tag 'Request Tutor'
+        %li
+          %a
+            %i
+            = link_to 'History', request_history_tutee_path(@tutee)
+      %div
+        %div
+          / Sticky Footer
+          %footer
+            %div
+              %div
+                %span Copyright © UC Berkeley 2019
+
 %h5 My requested history
 
 %table.table-bordered

@@ -25,8 +25,8 @@ class TuteesController < ApplicationController
 
   def create
     @tutee = Tutee.create!(tutee_params)
-    flash[:notice] = "Account for #{@tutee.first_name} was successfully created."
     if @tutee.valid?
+      flash[:notice] = "Account for #{@tutee.first_name} was successfully created."
       redirect_to tutee_path(@tutee)
     else
       redirect_to tutees_path
