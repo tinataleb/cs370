@@ -96,3 +96,5 @@ end
 group :development, :test do
   gem 'jasmine-rails' # if you plan to use JavaScript/CoffeeScript
 end
+gem 'devise'
+gem "html2haml"

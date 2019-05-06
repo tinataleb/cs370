@@ -5,7 +5,7 @@ class CreateTutees < ActiveRecord::Migration[5.2]
       t.string :first_name
       t.string :last_name
       t.date :birthdate
-      t.string :email
+      t.string :email, null: false, default: ""
       t.string :privilege, :default => "No"
       t.string :gender, :default => "prefer not to say"
       t.string :pronoun, :default => "other"
