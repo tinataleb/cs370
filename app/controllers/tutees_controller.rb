@@ -8,20 +8,22 @@ class TuteesController < ApplicationController
 
   def createTuteeSession
     #Add authentication here in the future
-    @tutee = Tutee.where(:email => params[:email].downcase).first()
+    @tutee = Tutee.find_by_id(params[:id])
     if @tutee.nil?
       redirect_to new_tutee_path
     elsif @tutee
       add_tutee_to_session(@tutee)
     else
-      redirect_to tutees_path
+      new_tutee_session_path
     end
   end
 
   def destroyTuteeSession
     session[:tutee_logged_in] = false
     session[:tutee_id] = nil
-    redirect_to tutees_path
+    redirect_to destroy_tutee_session_path, method: :delete
+
+
   end
 
 
@@ -31,7 +33,8 @@ class TuteesController < ApplicationController
   end
 
   def login
-    @tutee = Tutee.where(:email => params[:email].downcase).first()
+    @tutee = Tutee.find_by_id(params[:id])
+    # @tutee = Tutee.where(:email => params[:email].downcase).first()
     if not @tutee.nil? then redirect_to tutee_path(@tutee) else redirect_to new_tutee_path end
   end
 
@@ -41,7 +44,12 @@ class TuteesController < ApplicationController
 
   def show
     @courses = [Course.find_by_semester(Course.current_semester)]
+    p "print something"
     @tutee = Tutee.find_by_id(params[:id])
+    p "tutee"
+    p @tutee.id
+    p @tutee.first_name
+    p @tutee.last_name
     @requests = @tutee.requests.where('created_at >= ?', Date.today.beginning_of_week.strftime("%Y-%m-%d"))
     @evaluations = @tutee.evaluations
   end
@@ -51,6 +59,8 @@ class TuteesController < ApplicationController
 
   def edit
     @tutee = Tutee.find params[:id]
+    redirect_to edit_tutee_registration_path(@tutee)
+
   end
 
   def create
